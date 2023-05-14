@@ -1,0 +1,8 @@
+{
+	"manifest_version": 2,
+	"name": " Bookshelf",
+	"version": "0.0.1",
+	"background": {
+	  "scripts": ["./background.ts"]
+	}
+  }
