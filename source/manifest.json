@@ -2,7 +2,31 @@
 	"manifest_version": 2,
 	"name": " Bookshelf",
 	"version": "0.0.1",
+	"permissions": [
+	  "tabs",
+	  "storage"
+	],
 	"background": {
 	  "scripts": ["./background.ts"]
+	},
+	"content_scripts": [
+		{
+		  "matches": ["<all_urls>"],
+		  "js": ["content-script.ts"]
+		}
+	],
+	"icons": {
+		"16": "./assets/book.png",
+	  	"24": "./assets/book.png",
+	  	"32": "./assets/book.png"
+	},
+	"browser_action": {
+	  "default_icon": {
+		"16": "./assets/book.png",
+		"24": "./assets/book.png",
+		"32": "./assets/book.png"
+	  },
+	  "default_popup": "./popup.html",
+	  "default_title": "Bookshelf"
 	}
   }
