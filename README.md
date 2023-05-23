@@ -18,7 +18,7 @@ To run on your local machine:
 
 TODO:
 
-1. Finish chapter stroage
+1. Finish chapter data stroage
 
 2. Style popup (Vue.js? idk yet)
 
