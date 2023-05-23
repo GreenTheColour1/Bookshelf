@@ -2,7 +2,7 @@ This is mostly a practice application to learn new things while still being some
 
 This is a web extension made in Typescript and bundled with Parcel to make development easier.
 
-I made this extension to keep track of the last chapter I read in the novels I read online. I read a lot of translated novels where the url of a chapter would be something like https://<nameoftranslator>.com/<nameofnovel>/<chapternumber> so I figured I could try and make something that would automatically keep track of the last chapter I read.
+I made this extension to keep track of the last chapter I read in the novels I read online. I read a lot of translated novels where the url of a chapter would be something like https://\<nameoftranslator\>.com/<nameofnovel\>/\<chapternumber\> so I figured I could try and make something that would automatically keep track of the last chapter I read.
 
 NOTE: This is still a work in progress and is not ready for use.
 
