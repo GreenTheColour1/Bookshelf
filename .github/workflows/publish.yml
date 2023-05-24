@@ -15,8 +15,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version-file: .nvmrc
-          cache: npm
-      - run: npm ci
+          cache: yarn
+      - run: yarn install --frozen-lockfile
       - name: Test and build
         run: npm test
       - name: Create tag if necessary
@@ -46,7 +46,6 @@ jobs:
       matrix:
         command:
           - Firefox
-          - Chrome
     environment: ${{ matrix.command }}
     runs-on: ubuntu-latest
     steps:
@@ -58,12 +57,3 @@ jobs:
         env:
           WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
           WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
-      - name: Submit to Google
-        if: matrix.command == 'Chrome'
-        working-directory: artifact
-        run: npx chrome-webstore-upload-cli@2 upload --auto-publish
-        env:
-          EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
-          CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}

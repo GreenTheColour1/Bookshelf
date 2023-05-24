@@ -1,0 +1,21 @@
+name: Test
+
+on:
+  - push
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npx lockfile-lint --path yarn.lock --allowed-hosts yarn --validate-https
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - run: yarn install
+      - run: yarn test
