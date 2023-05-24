@@ -1,17 +1,16 @@
 {
 	"manifest_version": 2,
-	"name": " Bookshelf",
+	"name": "Green Bookshelf",
 	"version": "0.0.1",
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "{b48ccd4d-ea1c-4978-b64e-107ea7a78a55}"
+		}
+	},
 	"permissions": ["tabs", "storage"],
 	"background": {
 		"scripts": ["./background.ts"]
 	},
-	"content_scripts": [
-		{
-			"matches": ["<all_urls>"],
-			"js": ["content-script.ts"]
-		}
-	],
 	"icons": {
 		"16": "./assets/book.png",
 		"24": "./assets/book.png",
@@ -24,6 +23,6 @@
 			"32": "./assets/book.png"
 		},
 		"default_popup": "./popup.html",
-		"default_title": "Bookshelf"
+		"default_title": "Green Bookshelf"
 	}
 }

@@ -1,26 +1,38 @@
 {
- "name": "bookshelf",
- "version": "1.0.0",
- "license": "MIT",
- "scripts": {
-  "build": "parcel build source/manifest.json --no-content-hash --no-source-maps --dist-dir distribution --no-cache --detailed-report 0",
-  "watch": "parcel watch source/manifest.json --dist-dir distribution --no-cache --no-hmr",
-  "start": "web-ext run --devtools",
-  "start:chrome": "web-ext run -t chromium --devtools"
- },
- "devDependencies": {
-  "@parcel/config-webextension": "^2.8.3",
-  "parcel": "^2.8.3"
- },
- "webExt": {
-  "sourceDir": "distribution",
-  "run": {
-   "startUrl": [
-    "https://bcatranslation.com/deep-sea-embers-chapter-261/"
-   ]
-  }
- },
- "dependencies": {
-  "@types/chrome": "^0.0.236"
- }
+	"name": "bookshelf",
+	"version": "0.1.0",
+	"license": "MIT",
+	"scripts": {
+		"build": "parcel build source/manifest.json --no-content-hash --no-source-maps --dist-dir distribution --no-cache --detailed-report 0",
+		"watch": "parcel watch source/manifest.json --dist-dir distribution --no-cache --no-hmr",
+		"start": "web-ext run --devtools",
+		"start:chrome": "web-ext run -t chromium --devtools",
+		"lint:js": "xo source",
+		"lint-fix": "xo --fix",
+		"test": "run-p lint:* build"
+	},
+	"devDependencies": {
+		"@parcel/config-webextension": "^2.8.3",
+		"parcel": "^2.8.3",
+		"web-ext": "^7.6.2",
+		"xo": "^0.54.2",
+		"yarn-run-all": "^3.1.1"
+	},
+	"webExt": {
+		"sourceDir": "distribution",
+		"run": {
+			"startUrl": [
+				"https://bcatranslation.com/deep-sea-embers-chapter-261/"
+			]
+		}
+	},
+	"xo": {
+		"envs": [
+			"browser",
+			"webextensions"
+		]
+	},
+	"dependencies": {
+		"@types/firefox-webext-browser": "^111.0.1"
+	}
 }

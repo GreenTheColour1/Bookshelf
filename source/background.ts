@@ -1,19 +1,45 @@
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-	console.log("hello");
-	if (message.action === "add") {
-		//find chapter number and novel name
-		const novelnames = NovelParser(message.title, message.url);
-
-		sendResponse(novelnames);
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+	if (message.action === 'add') {
+		// Find chapter number and novel name
+		const novel: Novel = novelParser(
+			message.title as string,
+			message.url as string,
+		);
+		sendResponse(novel);
 	}
 });
 
-const NovelParser = (title: string, url: string) => {
-	const chapterString = new RegExp("chapter.d+", "i");
+const novelParser = (title: string, url: string): Novel => {
+	const novelNames = title.split(/chapter.\d+/i);
+	const chapterNumber = Number(/\b(?<=chapter.)\d+/i.exec(title)![0]);
 
-	let novelNames = title.split(chapterString);
+	const novel = new Novel(novelNames, '', chapterNumber, url, url);
 
-	console.log(novelNames);
-
-	return novelNames;
+	return novel;
 };
+
+class Novel {
+	name: string;
+	chapter: number;
+	url: string;
+	names: string[];
+	lastChapterUrl: string;
+
+	constructor(
+		names: string[],
+		name: string,
+		chapter: number,
+		url: string,
+		lastChapterUrl: string,
+	) {
+		this.names = names ?? [];
+		this.name = name ?? '';
+		this.chapter = chapter ?? 0;
+		this.url = url ?? '';
+		this.lastChapterUrl = lastChapterUrl ?? '';
+	}
+}
+
+class ExtentionStorage {
+	novelList: Novel[];
+}
